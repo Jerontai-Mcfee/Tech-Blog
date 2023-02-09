@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
     res.render('homepage', {
       blogs,
 
-      // Pass the login flag to the tamplate
+      // Pass the login flag to the template
       logged_in: req.session.logged_in,
     });
   } catch (err) {
