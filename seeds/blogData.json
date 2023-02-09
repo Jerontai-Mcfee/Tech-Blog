@@ -1,0 +1,17 @@
+[
+    {
+      "title": "blog 1",
+      "description": "This is a blog.",
+      "user_id": 1
+    },
+    {
+      "title": "Blog 2",
+      "description": "This is a another blog",
+      "user_id": 1
+    },
+    {
+      "title": "blog 3",
+      "description": "Man we're blogging now!.",
+      "user_id": 2
+    }
+  ]
