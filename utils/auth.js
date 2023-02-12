@@ -1,12 +1,13 @@
 const withAuth = (req, res, next) => {
-    //  created middleware
-    //  authenticates (validates) log in information on the route active session
-    // if not logged in redirects to login page
-    if (!req.session.logged_in) {
-      res.redirect('/login');
-    } else {
-      next();
-    }
-  };
-  
-  module.exports = withAuth;
+  // This middleware is responsible for: 
+  //    authenticating (validating) active session logged in switch 
+  // if not logged in, redirects to login page
+  //   otherwise will continue to the callback function
+  if (!req.session.logged_in) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
+};
+
+module.exports = withAuth;
