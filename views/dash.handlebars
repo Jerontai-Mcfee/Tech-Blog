@@ -1,0 +1,67 @@
+{{> welcome }}
+
+  <div class="column">
+    <h3>Create a Blog:</h3>
+
+    <form class="form new-blog-form">
+      <div class="form-group">
+        <input class="form-input" type="text" id="blog-title" name="blog-title" placeholder="Title"/>
+      </div>
+      <div class="form-group">
+        <textarea class="form-input" id="blog-desc" name="blog-desc"  placeholder="Enter a Blog" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <button id="create-blog-btn" type="submit" class="btn btn-primary">
+          <i class="fa-regular fa-floppy-disk"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  {{#if blogs.length}}
+  <div class="column blog-list">
+    <p class="is-size-3">Current Blogs:</p>
+
+    {{#each blogs as |blog| }}
+<div class="card blog">
+  <header class="card-header is-small level">
+    <p class="card-header-title">
+      {{{get_emoji}}}
+      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
+      <a type="link" href="/blogpage/{{blog.id}}">{{blog.title}}</a>
+    </p>
+    <p class="card-header-subtitle">
+      Created by {{blog.user.username}} on {{format_date blog.date_created}}
+    </p>
+
+    <p class="card-header-icon">
+      <button 
+        id='delete-blog-btn' 
+        class='button is-small is-danger ml-6'
+        type='submit'
+        data-id="{{blog.id}}">
+        <i class="fa fa-trash"></i>
+      </button>
+    </p>
+
+  </header>
+
+  <div class="card-content">
+    <div class="content">
+      {{blog.description}}
+    </div>
+  </div>
+</div>
+{{/each }}
+    {{!-- {{> bloglist parameter=true }} --}}
+  </div>
+
+{{else}}
+  <div class='column'>
+    <p class="is-size-3" >Enter your first blog.</p>
+  </div>
+
+  {{/if}}
+{{!-- </div> --}}
+
+<script src="./js/dash.js"></script>

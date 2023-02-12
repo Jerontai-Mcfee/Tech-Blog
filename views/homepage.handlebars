@@ -1,18 +1,15 @@
+{{!-- Welcome message --}}
+{{> welcome }}
+
 <!-- Loop over each object in the blogs array -->
-{{#each blogs as |blog| }}
+{{!-- {{#each blogs as |blog| }}
 <div class="row mb-4 blog">
   <div class="col-md-5">
     <h2>
       <!-- Call helper function with triple brackets to render the emoji span as HTML -->
       {{{get_emoji}}}
-      <a href="/blog/{{blog.id}}">{{blog.name}}</a>
+      <a type="link" href="/blogpage/{{blog.id}}">{{blog.title}}</a>
     </h2>
-    <p>
-      <span for="img" aria-label="money">💲</span>
-      <!-- Pass needed_funding value to the helper function -->
-      <span class="dollar-amount">{{format_amount blog.needed_funding}}</span>
-      needed!
-    </p>
     <p>Created by {{blog.user.username}} on {{format_date blog.date_created}}</p>
   </div>
   <div class="col-md-7">
@@ -21,4 +18,36 @@
     </p>
   </div>
 </div>
-{{/each}}
+{{/each}} --}}
+{{#if blogs.length}}
+  <div class="column blog-list">
+    <p class="is-size-3">Current Blogs:</p>
+
+{{#each blogs as |blog| }}
+<div class="card blog">
+  <header class="card-header is-small level">
+    <p class="card-header-title">
+      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
+      {{{get_emoji}}}
+      <a type="link" href="/blogpage/{{blog.id}}">{{blog.title}}</a>
+    </p>
+    <p class="card-header-subtitle">
+      Created by {{blog.user.username}} on {{format_date blog.date_created}}
+    </p>
+  </header>
+
+  <div class="card-content">
+    <div class="content">
+      {{blog.description}}
+    </div>
+  </div>
+</div>
+{{/each }}
+
+{{else}}
+  <div class='column'>
+    <p class="is-size-3" >Be the First to enter a blog.</p>
+  </div>
+{{/if}} 
+
+{{!-- {{> bloglist parameter=nodelete}} --}}
