@@ -17,6 +17,10 @@ Blog.init(
     },
     description: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [3],
+      },
     },
     date_created: {
       type: DataTypes.DATE,
