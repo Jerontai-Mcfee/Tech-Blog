@@ -1,0 +1,45 @@
+<!-- header Section -->
+<section id='header' class='hero'>
+  <div class='columns level'>
+    <div class='column level-item'>
+      <a>
+        <img
+          {{!-- src starts with the "static" public folder --}}
+          src='../assets/technology-lightbulb.png'
+          width='150' />
+        </a>
+    </div>
+    <div class='column'>
+      <p class='title'>
+        {{!-- href references the route end-points --}}
+        <a href='/'>TechBlog!</a>
+      </p>
+      <p class='subtitle'>
+        <a href='/'>Tell us about your wares!!!!</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<nav id='navbar-end'>
+  <ul class='level'>
+    <!-- Conditionally render login or logout links -->
+    {{#if logged_in}}
+      <li>
+        <!-- which contains preferences -->
+        <a href="/profile">Profile</a> |
+        <button class="no-button" id="logout">Logout</button>
+      </li>
+    {{else}}
+      <li>
+        <!-- or logout of logged in-->
+        <a href='/login'>Login</a>
+        {{!-- <span>Login</span> --}}
+      </li>
+    {{/if}}
+  </ul>
+</nav>
+
+  {{#if logged_in}}
+  <script defer src="/js/logout.js"></script>
+  {{/if}}
