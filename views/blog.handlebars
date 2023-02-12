@@ -1,14 +1,99 @@
+<nav id='navbar-end'>
+  <ul class='level'>
+      <li>
+        <button
+          id='save-btn'
+          class='button is-primary is-focused'
+          type='submit'
+        >
+          <i class='fa-regular fa-floppy-disk'></i>
+        </button>
+        {{!-- <button id="save-btn" class="btn btn-primary">Save this Blog!</button> --}}
+      </li>
+      <li>
+        <!-- which contains user blogs -->
+        <button
+          id='delete-blog-btn'
+          class='button is-danger is-focused'
+          type='submit'
+          data-id='{{blog.id}}'
+        >
+          <i class="fa fa-trash"></i>
+        </button>
+        {{!-- <button id="delete-blog-btn" class="btn btn-sm btn-danger" data-id="{{blog.id}}">
+          <i class="fa fa-trash"></i>
+        </button> --}}
+      </li>
+  </ul>
+</nav>
+
 <div class="text-center">
-  <h2>{{name}}</h2>
-  <p>{{{get_emoji}}}</p>
+  <h2>{{{get_emoji}}}     {{title}}</h2>
+  <p>Created by {{user.username}} on {{format_date date_created}}</p>
+
   <p>{{description}}</p>
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
-  {{!-- <p>
-    <span for="img" aria-label="money">💲</span>
-    <span class="dollar-amount">{{format_amount needed_funding}}</span>
-    needed
-  </p> --}}
-  <p>
-    <button class="btn btn-primary">Fund this Blog!</button>
-  </p>
+
+  {{#if logged_in}}
+  <div class='container'>
+
+    <div class='columns field'>
+
+      <div class='control column has-icons-right'>
+        <textarea class='textarea' id="comment-text" placeholder='Add comment here'>
+        </textarea>
+        <span class='icon is-right'>
+          <button id='create-comment-btn' class='button is-focused ml-6' type='submit' data-id="{{comment.id}}">
+            <i class='fa-regular fa-floppy-disk'></i>
+          </button>
+        </span>
+      </div>
+
+      <div class='control'>
+      </div>
+
+    </div>
+  </div>
+{{/if}}
+  
+  {{#if comments.length}}
+  <div class="container comment-list">
+    <h3>Comments:</h3>
+
+    {{#each comments as |comment|}}
+    <div class="card comment">
+      <div class="card-content">
+         <div class="content is-size-5">
+          {{comment_text}}
+         </div>
+      </div>
+      <div class="columns card-icon">
+      <div class="column">
+        <p class="is-size-5" >
+          {{!-- <a type="link" href="/comments/{{comment.id}}"> --}}
+          {{!-- <span>Created by {{comment.user.username}} on {{format_date comment.date_created}} --}}
+          <span>Created by {{comment.user.username}}
+          </span>
+          {{!-- </a> --}}
+          </p>
+      </div>
+      <div class="column">
+        <button id="delete-comment-btn" class="btn btn-sm btn-danger" data-id="{{comment.id}}">
+          <i class="fa fa-trash"></i>
+          </button>
+      </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
 </div>
+
+
+  <script src="./js/blog.js"></script>
+
+{{#if logged_in}}
+
+  <script src="./js/comment.js"></script>
+ 
+
+{{/if}}
