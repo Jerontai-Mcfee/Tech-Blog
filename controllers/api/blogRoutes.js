@@ -10,11 +10,7 @@ router.post('/', async (req, res) => {
 
     res.status(200).json(newBlog);
 
-    // const blog = newBlog.get({ plain: true });
-    // res.render('dash', {
-    //   ...blog,
-    //   logged_in: req.session.logged_in
-    // });
+    
   } catch (err) {
     res.status(400).json(err);
   }

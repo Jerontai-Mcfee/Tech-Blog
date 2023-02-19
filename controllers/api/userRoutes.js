@@ -1,29 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// user model fields:
-// id, username, email, password, admin, date_added
-
-// //  create a new user 
-// router.post('/', async (req, res) => {
-//   try {
-//     console.log(">>>>>>>>>>  location userRoutes POST 'api/users/' ");
-//     const userData = await User.create(req.body);
-//     console.log(userData);
-//     // save the session data
-//     req.session.save(() => {
-//       req.session.user_id = userData.id;
-//       req.session.user_name = userData.username;
-//       req.session.user_email = userData.email;
-//       req.session.user_admin = userData.admin;
-//       req.session.logged_in = true;
-
-//       res.status(200).json(userData);
-//     });
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
 
 // POST (create) user login
 router.post('/login', async (req, res) => {
@@ -97,16 +74,5 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// // POST user logout
-// router.post('/logout', (req, res) => {
-//   // When the user logs out, destroy the session storage
-//   if (req.session.logged_in) {
-//     req.session.destroy(() => {
-//       res.status(204).end();
-//     });
-//   } else {
-//     res.status(404).end();
-//   }
-// });
 
 module.exports = router;
