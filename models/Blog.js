@@ -30,11 +30,14 @@ Blog.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'users', // <-- change this to 'users'
         key: 'id',
       },
+      onDelete: 'CASCADE',
     },
-  },
+    
+    },
+  
   {
     sequelize,
     modelName: 'blog',
